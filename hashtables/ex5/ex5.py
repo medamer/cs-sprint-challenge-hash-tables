@@ -8,6 +8,21 @@ def finder(files, queries):
     """
     # Your code here
 
+    cache = {}
+
+    for f in files:
+        for q in queries:
+            if q in f:
+                if q not in cache:
+                    cache[q] = f
+                else:
+                    return cache[q]
+    
+    result = []
+
+    for k, v in cache.items():
+        result.append(v)
+        
     return result
 
 
