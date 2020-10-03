@@ -9,20 +9,19 @@ def finder(files, queries):
     # Your code here
 
     cache = {}
-
-    for f in files:
-        for q in queries:
-            if q in f:
-                if q not in cache:
-                    cache[q] = f
-                else:
-                    return cache[q]
-    
     result = []
 
-    for k, v in cache.items():
-        result.append(v)
-        
+    for i in files:
+        name = i.split('/')[-1]
+        if name not in cache:
+            cache[name] = [i]
+        else:
+            cache[name].append(i)
+
+
+    for n in queries:
+        if n in cache:
+            result.extend(cache[n])
     return result
 
 
@@ -30,6 +29,7 @@ if __name__ == "__main__":
     files = [
         '/bin/foo',
         '/bin/bar',
+        '/usr/foo',
         '/usr/bin/baz'
     ]
     queries = [
